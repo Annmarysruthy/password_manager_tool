@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter import messagebox
 import random
 import json
-from tkinter import messagebox
 # For searching password in json file
 
 
@@ -20,9 +19,6 @@ def find_password():
             messagebox.showinfo(title=website, message=f"Email: {email}\nPassword: {password}")
         else:
             messagebox.showinfo(title="Error", message=f"No details for the website {website} exists")
-
-
-
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 
