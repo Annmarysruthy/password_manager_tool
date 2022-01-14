@@ -2,6 +2,26 @@ from tkinter import *
 from tkinter import messagebox
 import random
 import json
+from tkinter import messagebox
+# For searching password in json file
+
+
+def find_password():
+    try:
+        file = open("data.json", "r")
+        data = json.load(file)
+    except FileNotFoundError:
+        messagebox.showerror(title="Error", message="No Data File Found.")
+    else:
+        website = website_entry.get()
+        if website in data:
+            email = data[website]["email"]
+            password = data[website]["password"]
+            messagebox.showinfo(title=website, message=f"Email: {email}\nPassword: {password}")
+        else:
+            messagebox.showinfo(title="Error", message=f"No details for the website {website} exists")
+
+
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
@@ -78,9 +98,12 @@ canvas.grid(column=1, row=0)
 website_label = Label(text="Website:")
 website_label.grid(column=0, row=1)
 
-website_entry = Entry(width=45)
-website_entry.grid(column=1, row=1, columnspan=2)
+website_entry = Entry(width=26)
+website_entry.grid(column=1, row=1)
 website_entry.focus()
+
+search_button = Button(text="Search", width=15, command=find_password)
+search_button.grid(column=2, row=1)
 
 email_label = Label(text="Email/Username:")
 email_label.grid(column=0, row=2)
